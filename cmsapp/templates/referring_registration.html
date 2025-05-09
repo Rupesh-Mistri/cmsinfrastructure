@@ -1,0 +1,165 @@
+{% extends "admin_base_layout.html" %}
+{% block body %}
+<div class="container  sm:pt-0">
+    <div class="mt-2 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+        <h3 class="text-center mt-2">Member Referring Form</h3>
+        
+        <div class="container">
+        <div class="mt-4">
+        <form method="post" >
+            {% csrf_token %}
+  
+            <div class="row">
+              <!-- Loop through user form fields -->
+              {% for field in form %}
+              <div class="col-12 mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                
+                {% if field.name == 'password1' %}
+                <i class="bi bi-info-circle"
+                  data-bs-toggle="popover"
+                  data-bs-html="true"
+                  title="Password Requirements"
+                  data-bs-content="
+                    <ul style='padding-left: 20px; margin: 0;'>
+                      <li>Your password can’t be too similar to your other personal information.</li>
+                      <li>Your password must contain at least 8 characters.</li>
+                      <li>Your password can’t be a commonly used password.</li>
+                      <li>Your password can’t be entirely numeric.</li>
+                    </ul>">
+                </i>
+                {% endif %}
+                
+                {{ field }}
+                
+                {% if field.errors %}
+                <div class="error-message small">{{ field.errors|join:", " }}</div>
+                {% endif %}
+              </div>
+              {% endfor %}
+  
+              <!-- Loop through member form fields -->
+              {% for field in mform %}
+              <div class="col-12 mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                {{ field }}
+                
+                {% if field.errors %}
+                <div class="error-message small">{{ field.errors|join:", " }}</div>
+                {% endif %}
+              </div>
+              {% endfor %}
+            </div>
+  <input type="hidden" name="redirection" value="redirection">
+            <!-- Submit button -->
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+  
+            <!-- Forgot password link -->
+            {% comment %} <div class="text-center mt-3">
+              <a href="#" class="text-muted">Forgot Password?</a>
+            </div> {% endcomment %}
+          </form>
+        </div>
+    </div>
+    </div>
+</div>
+<script>
+    function onlyNumberKey(evt) {
+        var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+            return false;
+        return true;
+    }
+
+    id_city = document.getElementById("id_city");
+    id_city.innerHTML = '<option value="">Select</option>';
+</script>
+<script>
+    id_state = document.getElementById("id_state")
+    if (id_state) handleDropdownChange(id_state, 'id_city', '/cascade_ajax/', 'state')
+    function handleDropdownChange(parentElement, childId, endpoint, level) {
+      const parentValue = parentElement.value;
+    
+      if (parentValue !== '') {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', endpoint, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    
+        const params = `level=${encodeURIComponent(level)}&value=${encodeURIComponent(parentValue)}&csrfmiddlewaretoken={{ csrf_token }}`;
+    
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+              try {
+                const data = JSON.parse(xhr.responseText);
+                let options = '<option value="">Select</option>';
+                for (const item of data) {
+                  options += `<option value="${item.name}">${item.name}</option>`;
+                }
+                document.getElementById(childId).innerHTML = options;
+    
+               
+              } catch (e) {
+                console.error('Error parsing response:', e);
+              }
+            } else {
+              console.error('Error fetching data:', xhr.status, xhr.statusText);
+            }
+          }
+        };
+    
+        xhr.send(params);
+      } else {
+        // Reset the child dropdown if the parent selection is empty
+        document.getElementById(childId).innerHTML = '<option value="">Select</option>';
+      }
+    }    
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const sponsorIdInput = document.getElementById("id_sponserID");
+        const sponsorNameInput = document.getElementById("id_sponsorName");
+    
+        if (sponsorIdInput) {
+            sponsorIdInput.addEventListener("change", function () {
+                const _href = "/get_sponser_name_ajax/";
+                const code = this.value;
+    
+                // Prepare the data payload
+                const data = new URLSearchParams();
+                data.append("csrfmiddlewaretoken", "{{ csrf_token }}");
+                data.append("sponserID", code);
+    
+                // Send the AJAX request
+                fetch(_href, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: data
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert(data)
+                        if (data.status === false) {
+                            alert(data.message);
+                            if (sponsorNameInput) {
+                                sponsorNameInput.value = "";
+                            }
+                            return false;
+                        }
+                        if (data.status === true && sponsorNameInput) {
+                            sponsorNameInput.value = data.name;
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                    });
+            });
+        }
+    });
+    
+</script>
+{% endblock body %}

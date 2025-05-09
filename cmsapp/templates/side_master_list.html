@@ -1,0 +1,43 @@
+{% extends "admin_base_layout.html" %}
+{% block body %}
+<div class="container  sm:pt-0">
+    <div class="mt-2 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+        <h3 class="text-center mt-2"> Side List </h3>
+        
+        <div class="p-4" name="1">
+           
+            <div class="card">
+                
+                {% comment %} <div class="card-header px-2 py-1 bg-success text-white">List </div> {% endcomment %}
+                <div class="card-body">
+                    <a href="/side_master_manage/create/" class="btn btn-primary align-right">New Side</a>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Side Name</th>
+                                    {% comment %} <th>City</th>
+                                    <th>Pincode</th> {% endcomment %}
+                                    <th>Edit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                {% for data in records %}
+                                <tr>
+                                    <td>{{ data.side_name }}</td>
+                              
+                                    {% comment %} <td>{{ data.}}</td>
+                                    <td>{{ data. }}</td> {% endcomment %}
+                                    <td><a href="/side_master_manage/update/{{ data.id }}" >Update</a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>   
+            </div>
+        </div> <!-- end of div name="1"-->
+    </div>
+</div>
+{% endblock body %}

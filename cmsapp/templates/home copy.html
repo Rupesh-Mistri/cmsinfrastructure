@@ -1,0 +1,917 @@
+{% comment %} hii
+{{user.name}} {% endcomment %}
+<html lang="en" dir="ltr">
+  <head>
+    <!-- META DATA -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Sash – Bootstrap 5 Admin &amp; Dashboard Template">
+    <meta name="author" content="Spruko Technologies Private Limited">
+    <meta name="keywords" content="admin, admin dashboard, admin panel, admin template, bootstrap, clean, dashboard, flat, jquery, modern, responsive, premium admin templates, responsive admin, ui, ui kit.">
+
+    <!-- FAVICON -->
+    <link rel="shortcut icon" type="image/x-icon" href="/static/assets/images/brand/favicon.ico">
+    <!-- TITLE -->
+    <title>Registration</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> {% endcomment %}
+
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <style>
+      /* Custom styles for the registration page */
+      * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        background-color: #f6f7fb;
+        color: #888da8;
+        letter-spacing: 0.2px;
+        font-family: 'Roboto', sans-serif;
+        padding: 0;
+        margin: 0;
+    }
+    
+    a,
+    p,
+    span,
+    div,
+    li,
+    td {
+        font-weight: 300!important;
+    }
+    
+    ::placeholder {
+        color: #ccc !important;
+        font-weight: 300;
+    }
+    
+    :-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: #ccc !important;
+        font-weight: 300;
+    }
+    
+    ::-ms-input-placeholder {
+        /* Microsoft Edge */
+        color: #ccc !important;
+        font-weight: 300;
+    }
+    
+    input {
+        border-color: #d8e0e5;
+        border-radius: 2px !important;
+        box-shadow: none !important;
+        font-weight: 300 !important;
+    }
+    
+    .form-control:disabled,
+    .form-control[readonly] {
+        background-color: #f6f7fb;
+    }
+    
+    button.btn {
+        border-radius: 2px !important;
+        box-shadow: none !important;
+    }
+    
+    button.btn.btn-primary {
+        background-color: #0e9aee !important;
+    }
+    
+    button.btn.btn-primary:hover {
+        background-color: #0879c8 !important;
+    }
+    
+    #left-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 280px;
+        background-color: #313644;
+        overflow-y: auto;
+        height: 100vh;
+        border-right: 1px solid #e6ecf5;
+        margin-top: 60px;
+        -webkit-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        overflow-x: hidden;
+        z-index: 2;
+    }
+    
+    #left-menu.small-left-menu,
+    #logo.small-left-menu {
+        width: 60px;
+    }
+    
+    #left-menu ul {
+        padding: 0;
+        margin: 0;
+    }
+    
+    #left-menu ul li {
+        padding: 0 10px;
+        display: block;
+        position: relative;
+    }
+    
+    #left-menu > ul > li {
+        margin: 15px 0;
+    }
+    
+    #left-menu ul li a {
+        color: #99abb4;
+        width: 100%;
+        display: inline-block;
+        width: 260px;
+        height: 37px;
+        position: relative;
+    }
+    
+    
+    #left-menu ul li a i {
+        font-size: 22px;
+        text-align: center;
+        width: 35px;
+        height: 35px;
+        display: inline-block;
+        -webkit-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+    }
+    #left-menu ul li:hover a span{
+        color: #0e9aee;
+    }
+    #left-menu ul li:hover a i{
+        color: #0e9aee;
+    }
+    
+    #left-menu ul li a span {
+        width: 100%;
+        height: 35px;
+        padding-left: 10px;
+        color: #99abb4;
+        font-weight: 300;
+        -webkit-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+    }
+    
+    #left-menu ul li.active a {
+        border-bottom: 2px solid #0e9aee;
+    }
+    
+    #left-menu ul li.active a span {
+        color: #fff;
+    }
+    
+    #left-menu ul li.active a i {
+        background-color: #0e9aee;
+        color: #fff;
+    }
+    
+    
+    #left-menu li.has-sub ul {
+        background-color: #454e62;
+        margin: 0 -10px;
+        padding-left: 45px;
+        height: 0;
+        overflow: hidden;
+        -webkit-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+    }
+    
+    #left-menu li ul.open {
+    /*    height: 140px;*/
+    }
+    
+    #left-menu li.has-sub ul > li {
+        padding-top: 10px;
+    }
+    
+    a:hover {
+        text-decoration: none;
+    }
+    
+    #logo {
+        position: fixed;
+        top: 0;
+        z-index: 2;
+        left: 0;
+        background-color: #464e62;
+        border-color: #464e62;
+        height: 60px;
+        width: 280px;
+        font-size: 30px;
+        line-height: 2em;
+        border-right: 1px solid #e6ecf5;
+        z-index: 4;
+        color: #fff;
+        padding-left: 15px;
+        -webkit-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        overflow: hidden;
+    }
+    
+    
+    #header {
+        background-color: #fff;
+        height: 60px;
+        border-bottom: 1px solid #e6ecf5;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 3;
+    }
+    
+    #header .header-left {
+        padding-left: 300px;
+        -webkit-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    #header .header-right {
+        padding-right: 40px;
+    }
+    
+    #header .header-right i,
+    #header .header-left i {
+        font-size: 30px;
+        line-height: 2em;
+        padding: 0 5px;
+        cursor: pointer;
+    }
+    
+    #main-content {
+        min-height: calc(100vh - 60px);
+        clear: both;
+    }
+    
+    #page-container {
+        padding-left: 300px;
+        padding-top: 80px;
+        padding-right: 25px;
+        -webkit-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    #page-container.small-left-menu,
+    #header .header-left.small-left-menu {
+        padding-left: 80px;
+    }
+    
+    .card {
+        border: 1px solid #e6ecf5;
+        margin-bottom: 1em;
+        font-weight: 300;
+    }
+    
+    .card .title {
+        padding: 15px 20px;
+        border-bottom: 1px solid #e6ecf5;
+        margin-bottom: 10px;
+        color: #000;
+        font-size: 18px;
+    }
+    
+    #show-lable {
+        opacity: 0;
+        visibility: hidden;
+        left: 80px;
+        font-weight: 300;
+        padding: 6px 15px;
+        background-color: #0e9aee;
+        position: fixed;
+        color: #fff;
+        -webkit-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    #left-menu.small-left-menu li.has-sub::after{
+        content: '';
+    }
+    #left-menu.small-left-menu li.has-sub ul{
+        position: fixed;
+        width: 280px;
+        z-index: 123;
+        height: 0;
+        left: 69px;
+        padding-left: 15px;
+    }
+    
+    @media only screen and (max-width: 992px) {
+        #left-menu,
+        #logo {
+            width: 60px;
+        }
+        
+        #page-container,
+        #header .header-left {
+            padding-left: 80px;
+        }
+        
+        #toggle-left-menu,.big-logo{
+            display: none;
+        }
+    /*
+        #logo{
+            padding: 0;
+            padding-left: 3px;
+        }
+        .small-logo{
+            display: block;
+        }
+    */
+        
+    }
+    
+    @media only screen and (min-width: 992px) {
+        #left-menu li.has-sub::after {
+            font-family: "Ionicons";
+            content: "\f3d3";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            transform: rotate(0deg);
+            -webkit-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        }
+        #left-menu li.has-sub.rotate:after {
+            -webkit-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            -o-transform: rotate(90deg);
+            transform: rotate(90deg);
+        }
+        .small-logo{
+            display: none;
+        }
+        
+    }    
+    </style>
+  </head>
+
+  <body>
+    {% comment %} <div class="container">
+    </div> {% endcomment %}
+    <div id="logo">
+        <span class="big-logo">.S!mple</span>
+        <span class="small-logo">S!M</span>
+    </div>
+    <div id="left-menu">
+        <ul>
+            <li class="active"><a href="#">
+                <i class="ion-ios-person-outline"></i>
+                <span>Dashboard</span>
+            </a></li>
+            <li class="has-sub">
+                <a href="#">
+                    <i class="ion-ios-person-outline"></i>
+                    <span>UI Elements</span>
+                </a>
+                <ul>
+                    <li><a href="#">UI Elements Item 1</a></li>
+                    <li><a href="#">UI Elements Item 2</a></li>
+                    <li><a href="#">UI Elements Item 3</a></li>
+                </ul>
+            </li>
+            <li><a href="#">
+                <i class="ion-ios-albums-outline"></i>
+                <span>Users</span>
+            </a></li>
+            <li class="has-sub">
+                <a href="#">
+                    <i class="ion-ios-person-outline"></i>
+                    <span>UI Elements</span>
+                </a>
+                <ul>
+                    <li><a href="#">UI Elements Item 1</a></li>
+                </ul>
+            </li>
+            <li><a href="#">
+                <i class="ion-ios-chatboxes-outline"></i>
+                <span>Users</span>
+            </a></li>
+            <li><a href="#">
+                <i class="ion-ios-chatboxes-outline"></i>
+                <span>Users</span>
+            </a></li>
+            <li><a href="#">
+                <i class="ion-ios-person-outline"></i>
+                <span>Users</span>
+            </a></li>
+            <li><a href="#">
+                <i class="ion-ios-person-outline"></i>
+                <span>Users</span>
+            </a></li>
+            <li><a href="#">
+                <i class="ion-ios-albums-outline"></i>
+                <span>Users</span>
+            </a></li>
+            <li><a href="#">
+                <i class="ion-ios-albums-outline"></i>
+                <span>Users</span>
+            </a></li>
+            <li><a href="#">
+                <i class="ion-ios-chatboxes-outline"></i>
+                <span>Users</span>
+            </a></li>
+            <li><a href="#">
+                <i class="ion-ios-chatboxes-outline"></i>
+                <span>Users</span>
+            </a></li>
+            <li><a href="#">
+                <i class="ion-ios-person-outline"></i>
+                <span>Users</span>
+            </a></li>
+            <li><a href="#">
+                <i class="ion-ios-person-outline"></i>
+                <span>Users</span>
+            </a></li>
+            <li><a href="#">
+                <i class="ion-ios-albums-outline"></i>
+                <span>Users</span>
+            </a></li>
+            <li><a href="#">
+                <i class="ion-ios-albums-outline"></i>
+                <span>Users</span>
+            </a></li>
+            <li><a href="#">
+                <i class="ion-ios-chatboxes-outline"></i>
+                <span>Users</span>
+            </a></li>
+            <li><a href="#">
+                <i class="ion-ios-chatboxes-outline"></i>
+                <span>Users</span>
+            </a></li>
+            <li><a href="#">
+                <i class="ion-ios-person-outline"></i>
+                <span>Users</span>
+            </a></li>
+            <li><a href="#">
+                <i class="ion-ios-person-outline"></i>
+                <span>Users</span>
+            </a></li>
+            <li><a href="#">
+                <i class="ion-ios-albums-outline"></i>
+                <span>Users</span>
+            </a></li>
+            <li><a href="#">
+                <i class="ion-ios-albums-outline"></i>
+                <span>Users</span>
+            </a></li>
+            <li><a href="#">
+                <i class="ion-ios-chatboxes-outline"></i>
+                <span>Table</span>
+            </a></li>
+            <li><a href="#">
+                <i class="ion-ios-chatboxes-outline"></i>
+                <span>Grid system</span>
+            </a></li>
+            <li><a href="#">
+                <i class="ion-ios-person-outline"></i>
+                <span>Permission</span>
+            </a></li>
+            <li><a href="#">
+                <i class="ion-ios-person-outline"></i>
+                <span>Users</span>
+            </a></li>
+            <li class="has-sub">
+                <a href="#">
+                    <i class="ion-ios-person-outline"></i>
+                    <span>UI Elements</span>
+                </a>
+                <ul>
+                    <li><a href="#">UI Elements Item 1</a></li>
+                    <li><a href="#">UI Elements Item 2</a></li>
+                    <li><a href="#">UI Elements Item 3</a></li>
+                </ul>
+            </li>
+            <li class="has-sub">
+                <a href="#">
+                    <i class="ion-ios-chatboxes-outline"></i>
+                    <span>Report</span>
+                </a>
+                <ul>
+                    <li><a href="#">Report Item 1</a></li>
+                    <li><a href="#">Report Item 2</a></li>
+                    <li><a href="#">Report Item 3</a></li>
+                    <li><a href="#">Report Item 3</a></li>
+                    <li><a href="#">Report Item 3</a></li>
+                    <li><a href="#">Report Item 3</a></li>
+                    <li><a href="#">Report Item 3</a></li>
+                </ul>
+            </li>
+            <li><a href="#">
+                <i class="ion-ios-albums-outline"></i>
+                <span>Users</span>
+            </a></li>
+            <li class="has-sub">
+                <a href="#">
+                    <i class="ion-ios-chatboxes-outline"></i>
+                    <span>Report</span>
+                </a>
+                <ul>
+                    <li><a href="#">Report Item 1</a></li>
+                    <li><a href="#">Report Item 2</a></li>
+                    <li><a href="#">Report Item 3</a></li>
+                    <li><a href="#">Report Item 3</a></li>
+                    <li><a href="#">Report Item 3</a></li>
+                    <li><a href="#">Report Item 3</a></li>
+                    <li><a href="#">Report Item 3</a></li>
+                </ul>
+            </li>
+            <li><a href="#">
+                <i class="ion-ios-chatboxes-outline"></i>
+                <span>Setting</span>
+            </a></li>
+
+        </ul>
+    </div>
+    <div id="main-content">
+        {% comment %} <div id="header">
+            <div class="header-left float-left">
+                <i id="toggle-left-menu" class="ion-android-menu"></i>
+            </div>
+            <div class="header-right float-right">
+                <i class="ion-ios-people"></i>
+            </div> 
+        </div>  {% endcomment %}
+
+        <div id="header" style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background-color: #f5f5f5;">
+            <div class="header-left" style="display: flex; align-items: center;">
+                <i id="toggle-left-menu" class="ion-android-menu" style="font-size: 24px; cursor: pointer;"></i>
+            </div>
+            <!-- Commented-out section for future use -->
+            <!-- <div class="header-right" style="float: right;">
+                <i class="ion-ios-people" style="font-size: 24px;"></i>
+            </div> -->
+            <div class="header-right" style="text-align: right; font-size: 18px; font-weight: bold;">
+                Profile
+            </div>
+        </div>
+        
+
+        <div id="page-container">
+            <div class="card">
+                <div class="title">Users</div>
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Name</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Name</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input id="html" type="checkbox" class="magic-checkbox">
+                                    <label for="html">HTML</label>
+
+                                    <input id="css" type="checkbox" class="magic-checkbox">
+                                    <label for="css">CSS</label>
+
+                                    <input id="js" type="checkbox" class="magic-checkbox">
+                                    <label for="js">Javascript</label>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input name="job" id="designer" type="radio" class="magic-radio">
+                                    <label for="designer">Web designer</label>
+
+                                    <input name="job" id="developer" type="radio" class="magic-radio">
+                                    <label for="developer">Web developer</label>
+
+                                    <input name="job" id="frontened" type="radio" class="magic-radio">
+                                    <label for="frontened">Frontened</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Button</label> <br>
+                                    <button class="btn btn-primary">Sumbmit</button>
+                                    <button class="btn btn-warning">Sumbmit</button>
+                                    <button class="btn btn-info">Sumbmit</button>
+                                    <button class="btn btn-danger">Sumbmit</button>
+                                    <button class="btn btn-secondary">Sumbmit</button>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Languages</label>
+                                    <select name="" id="" class="form-control">
+                                        <option value="">HTML</option>
+                                        <option value="">CSS</option>
+                                        <option value="">JS</option>
+                                        <option value="">PHP</option>
+                                        <option value="">SQL</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="title">Users</div>
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Name</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Name</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="title">Users</div>
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Name</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Name</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="title">Users</div>
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Name</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Name</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="title">Users</div>
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Name</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Name</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="title">Users</div>
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Name</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Name</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="title">Users</div>
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Name</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Name</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="title">Users</div>
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label">Email</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword" class="col-sm-3 col-form-label">Password</label>
+                                    <div class="col-sm-9">
+                                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-3 col-form-label">Email</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword" class="col-sm-3 col-form-label">Password</label>
+                                    <div class="col-sm-9">
+                                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <span id="show-lable">Hello</span>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $('#toggle-left-menu').click(function() {
+            if ($('#left-menu').hasClass('small-left-menu')) {
+                $('#left-menu').removeClass('small-left-menu');
+            } else {
+                $('#left-menu').addClass('small-left-menu');
+            }
+            $('#logo').toggleClass('small-left-menu');
+            $('#page-container').toggleClass('small-left-menu');
+            $('#header .header-left').toggleClass('small-left-menu');
+    
+            $('#logo .big-logo').toggle('300');
+            $('#logo .small-logo').toggle('300');
+            $('#logo').toggleClass('p-0 pl-1');
+        });
+    
+        $(document).on('mouseover', '#left-menu.small-left-menu > ul > li', function() {
+            if (!$(this).hasClass('has-sub')) {
+                var label = $(this).find('span').text();
+                var position = $(this).position();
+                $('#show-lable').css({
+                    'top': position.top + 79,
+                    'left': position.left + 59,
+                    'opacity': 1,
+                    'visibility': 'visible'
+                });
+    
+                $('#show-lable').text(label);
+            } else {
+                var position = $(this).position();
+                $(this).find('ul').addClass('open');
+    
+                if ($(this).find('ul').hasClass('open')) {
+                    const height = 47;
+                    var count_submenu_li = $(this).find('ul > li').length;
+                    if (position.top >= 580) {
+                        var style = {
+                            'top': (position.top + 100) - (height * count_submenu_li),
+                            'height': height * count_submenu_li + 'px'
+                        }
+                        $(this).find('ul.open').css(style);
+                    } else {
+                        var style = {
+                            'top': position.top + 79,
+                            'height': height * count_submenu_li + 'px'
+                        }
+    
+                        $(this).find('ul.open').css(style);
+                    }
+    
+                }
+            }
+    
+        });
+    
+        $(document).on('mouseout', '#left-menu.small-left-menu li a', function(e) {
+            $('#show-lable').css({
+                'opacity': 0,
+                'visibility': 'hidden'
+            });
+        });
+    
+        $(document).on('mouseout', '#left-menu.small-left-menu li.has-sub', function(e) {
+            $(this).find('ul').css({
+                'height': 0,
+            });
+        });
+    
+        $(window).resize(function() {
+            windowResize();
+        });
+    
+        $(window).on('load', function() {
+            windowResize();
+        });
+    
+        $('#left-menu li.has-sub > a').click(function() {
+            var _this = $(this).parent();
+    
+            _this.find('ul').toggleClass('open');
+            $(this).closest('li').toggleClass('rotate');
+    
+            _this.closest('#left-menu').find('.open').not(_this.find('ul')).removeClass('open');
+            _this.closest('#left-menu').find('.rotate').not($(this).closest('li')).removeClass('rotate');
+            _this.closest('#left-menu').find('ul').css('height', 0);
+    
+            if (_this.find('ul').hasClass('open')) {
+                const height = 47;
+                var count_submenu_li = _this.find('ul > li').length;
+                _this.find('ul').css('height', height * count_submenu_li + 'px');
+            }
+        });
+    
+    
+        function windowResize() {
+            var width = $(window).width();
+            if (width <= 992) {
+                $('#left-menu').addClass('small-left-menu');
+                $('#logo').addClass('small-left-menu p-0 pl-1');
+            } else {
+                $('#left-menu').removeClass('small-left-menu');
+                $('#logo').removeClass('small-left-menu p-0 pl-1');
+            }
+        }
+    </script>
+  </body>
+</html>

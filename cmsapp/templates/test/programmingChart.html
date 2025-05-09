@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, 
+								initial-scale=1.0">
+	<title>GeeksforGeeks Polar Area Chart</title>
+	<script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
+	</script>
+	<script src=
+"https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js">
+	</script>
+</head>
+
+<body>
+	<div>
+		<h1 style="color:green;">
+			GeeksforGeeks
+		</h1>
+		<h3>
+			Chart JS Polar Area Chart Example 1
+		</h3>
+		<div><canvas id="programmingChart"
+					width="400" height="400">
+			</canvas>
+		</div>
+	</div>
+	<script>
+		new Chart($("#programmingChart"), {
+			type: 'polarArea',
+			data: {
+				labels: ["Java", "Python", "C++", 
+						"JavaScript", "C#"],
+				datasets: [{
+					data: [25, 30, 15, 20, 10],
+					backgroundColor: ["#FF6384", 
+							"#36A2EB", "#FFCE56", 
+							"#4CAF50", "#9C27B0"],
+				}]
+			},
+			options: {
+				responsive: true,
+				maintainAspectRatio: false,
+				title: {
+					display: true,
+					text: 'Programming Language Usage on GeeksforGeeks'
+				}
+			}
+		});
+	</script>
+</body>
+
+</html>

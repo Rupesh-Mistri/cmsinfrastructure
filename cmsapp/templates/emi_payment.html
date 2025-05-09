@@ -1,0 +1,49 @@
+{% extends "admin_base_layout.html" %}
+{% block body %}
+<div class="container  sm:pt-0">
+    <div class="mt-2 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+        <h3 class="text-center mt-2">EMI Payment </h3>
+        
+        <form class="p-4" method="post" action="" enctype= "multipart/form-data">
+            {% csrf_token %}
+            <div class="card">
+        
+                {% comment %} <div class="card-header px-2 py-1 bg-success text-white">Details</div>
+                <div class="card-body"> {% endcomment %}
+                    <div class="row">
+
+                        <div class="mb-3">
+                            <label for="plot_booking_detail" class="form-label"><strong>Select Plot Booking</strong></label>
+                            <select name="plot_booking_detail" id="plot_booking_detail" class="form-control" required>
+                                <option value="" disabled selected>-- Select Plot --</option>
+                                {% for booking in member.plotbookingdetailsmodel_set.all %}
+                                    <option value="{{ booking.id }}">Plot ID: {{ booking.plot_dtl.plot_no }} - ₹{{ booking.total_amount }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-3 form-group mb-3">
+                        <label>{{ form.installment_amount.label_tag }} Payment Amount <span class="text-danger">*</span></label>
+                            {{ form.installment_amount }}
+                            {% if form.installment_amount.errors %}
+                                <span class="text-danger">{{ form.installment_amount.errors.0 }}</span>
+                            {% endif %}
+                        </div>
+
+                        
+                      
+
+                    </div>
+               
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-sm custom-pay-button mt-3">
+                            Submit   {% comment %} Pay Rs.1080 bonanza + Rs. 2100 {% endcomment %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock body %}

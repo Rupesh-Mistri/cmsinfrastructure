@@ -1,0 +1,141 @@
+{% extends "admin_base_layout.html" %}
+{% block body %}
+<div class="container py-4 sm:pt-0">
+    <div class="mt-2 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+        <h3 class="text-center"> Plot Booking Details </h3>
+        
+        <div class="p-4" name="1">
+            
+            <div class="card">
+                {% comment %} <div class="card-header px-2 py-1 bg-success text-white">Member Details</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <strong>Name:</strong> {{ purchase_det.member_id.name }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <strong>Mobile No:</strong> {{ purchase_det.member_id.mobile_no }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <strong>Email:</strong> {{ purchase_det.member_id.emailaddress }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <strong>Aadhar No:</strong> {{ purchase_det.member_id.adhar_no }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <strong>PAN No:</strong> {{ purchase_det.member_id.pan_no }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <strong>Address:</strong> {{ purchase_det.member_id.address }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <strong>State:</strong> {{ purchase_det.member_id.state }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <strong>City:</strong> {{ purchase_det.member_id.city }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <strong>Pincode:</strong> {{ purchase_det.member_id.pincode }}
+                        </div>
+                    </div>
+                </div>   
+
+                <div class="card-header px-2 py-1 bg-success text-white">Seller Details</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <strong>COMPANY NAME:</strong> {{ COMPANY_NAME}}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <strong>CIN:</strong> {{ CIN }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <strong>PAN:</strong> {{ PAN}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <strong>TAN:</strong> {{ TAN }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <strong>MOBILE NO </strong> {{ MOBILE_NO1 }} , {{MOBILE_NO2}}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <strong>WEBSITE :</strong> {{ WEBSITE_URL }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <strong>COMPANY ADDRESS:</strong> {{ COMPANY_ADDRESS }}
+                        </div>
+                       
+                    </div>
+                </div> {% endcomment %}
+
+
+                <div class="card-header px-2 py-1 bg-success text-white">Purchaser Details</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 form-group mb-3">
+                            
+                            <strong>Purchaser Name:</strong> {{ purchase_det.purchaser_name }}
+                        </div>
+                        <div class="col-md-3 form-group mb-3">
+                            <strong>Phone No:</strong> {{ purchase_det.phone_no }}
+                        </div>
+                        <div class="col-md-3 form-group mb-3">
+                            <strong>Address:</strong> {{ purchase_det.address }}
+                        </div>
+                        <div class="col-md-3 form-group mb-3">
+                            <strong>Address document:</strong>
+                            {% comment %} <img src="/uploads/{{purchase_det.address_document}}" alt="Photo"> {% endcomment %}
+                            <a href="/uploads/{{purchase_det.address_document}}" target="_blank" >View Image </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 form-group mb-3">
+                            <strong>Purchaser photo:</strong> 
+                            {% comment %} {{ purchase_det.purchaser_photo }} {% endcomment %}
+                            <a href="/uploads/{{purchase_det.purchaser_photo}}" target="_blank" >View Image </a>
+                        </div>
+                        <div class="col-md-3 form-group mb-3">
+                            <strong>Aadhar card no:</strong> {{ purchase_det.aadhar_card_no }}
+
+                        </div>
+                        <div class="col-md-3 form-group mb-3">
+                            <strong>Pan no:</strong> {{ purchase_det.pan_no }}
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="card-header px-2 py-1 bg-success text-white">Plot Details</div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3 form-group mb-3">
+                                    <strong>Land:</strong> {{ land_sell_dtl.plot_dtl.plot_no }}
+                                </div>
+                                <div class="col-md-3 form-group mb-3">
+                                    <strong>No of decimil:</strong> {{ land_sell_dtl.no_of_decimil }}
+                                </div>
+                                <div class="col-md-3 form-group mb-3">
+                                    <strong>Price:</strong> {{ land_sell_dtl.price }}
+                                </div>
+                                <div class="col-md-3 form-group mb-3">
+                                    <strong>Total amount::</strong> {{ land_sell_dtl.total_amount }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                   
+                </div>
+            </div>
+            <td><a href="/plot_booking_details/booking_slip/{{ purchase_det.id }}" >View</a></td>
+        </div> <!-- end of div name="1"-->
+    </div>
+</div>
+{% endblock body %}

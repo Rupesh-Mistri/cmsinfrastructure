@@ -1,0 +1,48 @@
+{% extends "admin_base_layout.html" %}
+{% block body %}
+<div class="container  sm:pt-0">
+    <div class="mt-2 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+        <h3 class="text-center mt-2"> Plot Book Details </h3>
+        
+        <div class="p-4" name="1">
+           
+            <div class="card">
+                
+                <div class="card-header px-2 py-1 bg-success text-white">List </div>
+                <div class="card-body">
+                    <a href="/purchaser_detail_form" class="btn btn-primary align-right">New Plot Book</a>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Purchaser Name</th>
+                                    <th>Mobile No</th>
+                                    <th>Aadhar Card No</th>
+                                    <th>PAN No</th>
+                                    {% comment %} <th>City</th>
+                                    <th>Pincode</th> {% endcomment %}
+                                    <th>View Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                {% for data in purchase_list %}
+                                <tr>
+                                    <td>{{ data.purchaser_name }}</td>
+                                    <td>{{ data.phone_no }}</td>
+                                    <td>{{ data.aadhar_card_no }}</td>
+                                    <td>{{ data.pan_no }}</td>
+                                    {% comment %} <td>{{ data.}}</td>
+                                    <td>{{ data. }}</td> {% endcomment %}
+                                    <td><a href="/plot_booking_details/view/{{ data.id }}" >View</a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>   
+            </div>
+        </div> <!-- end of div name="1"-->
+    </div>
+</div>
+{% endblock body %}

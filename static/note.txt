@@ -1,0 +1,99 @@
+INSERT INTO `tbl_member` (`id`, `sponserID`, `sponsorName`, `name`, `adhar_no`, `pan_no`, `address`, `state`, `city`, `pincode`, `created_at`, `updated_at`, `status`, `registration_fee`, `sponser_member_id`, `user_detail_id`,`rank`) VALUES
+(1, '', 'admin', 'Test', '123456789012', 'gd54444444', 'tst', 'Jharkhand', 'Ranchi', '654321', '2025-01-21 05:34:41.623387', '2025-01-21 05:34:41.959220', 1, 300.00, NULL, 1,'CP-01');
+
+
+-------------
+
+WITH RECURSIVE
+        os (id, name, sponser_member_id, relative_level)
+        AS (
+        SELECT id,
+                name,
+                sponser_member_id,
+                1 AS relative_level
+        FROM tbl_member
+        WHERE id = 1
+        UNION ALL
+        SELECT m.id,
+                m.name,
+                m.sponser_member_id,
+                os.relative_level + 1
+        FROM tbl_member m
+        INNER JOIN os ON m.sponser_member_id = os.id
+        )
+        SELECT 0 as id,
+        os.relative_level,
+        COALESCE(SUM(t.total_amount),0 ) AS total_sales,
+        ROUND(SUM(
+            CASE
+                WHEN os.relative_level = 1 THEN ROUND(4 * COALESCE(t.total_amount, 0)) / 100
+                WHEN os.relative_level = 2 THEN ROUND((2.666666666666667 * COALESCE(t.total_amount, 0)) / 100, 2)
+                WHEN os.relative_level = 3 THEN ROUND((1.333333333333333 * COALESCE(t.total_amount, 0)) / 100, 2)
+                WHEN os.relative_level BETWEEN 4 AND 12 THEN ROUND((0.5333333333333333 * COALESCE(t.total_amount, 0)) / 100, 2)   
+                ELSE 0
+            END
+        ),2) AS total_commission
+        FROM os
+        LEFT JOIN tbl_plot_sell_details t ON os.id = t.member_id
+        GROUP BY os.relative_level
+        ORDER BY os.relative_level;
+
+        
+
+        WHEN os.relative_level = 1 THEN ROUND(4 * COALESCE(t.total_amount, 0)) / 100
+
+        RANK
+        when os.rank ='CP-01' THEN ROUND(5 * COALESCE(t.total_amount,0))/100
+        when os.rank ='CP-02' THEN ROUND(7 * COALESCE(t.total_amount,0))/100
+        when os.rank ='CP-03' THEN ROUND(9 * COALESCE(t.total_amount,0))/100
+        when os.rank ='CP-04' THEN ROUND(11 * COALESCE(t.total_amount,0))/100
+        when os.rank ='CP-05' THEN ROUND(13 * COALESCE(t.total_amount,0))/100
+        when os.rank ='CP-06' THEN ROUND(14 * COALESCE(t.total_amount,0))/100
+        when os.rank ='CP-07' THEN ROUND(15 * COALESCE(t.total_amount,0))/100
+        when os.rank ='CP-08' THEN ROUND(16 * COALESCE(t.total_amount,0))/100
+        when os.rank ='CP-09' THEN ROUND(17 * COALESCE(t.total_amount,0))/100
+        when os.rank ='CP-10' THEN ROUND(18 * COALESCE(t.total_amount,0))/100
+
+
+
+
+WITH RECURSIVE
+        os (id, name, sponser_member_id, rank)
+        AS (
+        SELECT id,
+                name,
+                sponser_member_id,
+                rank AS rank
+        FROM tbl_member
+        WHERE id = 1
+        UNION ALL
+        SELECT m.id,
+                m.name,
+                m.sponser_member_id,
+                os.rank 
+        FROM tbl_member m
+        INNER JOIN os ON m.sponser_member_id = os.id
+        )
+        SELECT 0 as id,
+        os.rank,
+        COALESCE(SUM(t.total_amount),0 ) AS total_sales,
+        ROUND(SUM( 
+            CASE
+                when os.rank ='CP-01' THEN ROUND(5 * COALESCE(t.total_amount,0))/100
+                when os.rank ='CP-02' THEN ROUND(7 * COALESCE(t.total_amount,0))/100
+                when os.rank ='CP-03' THEN ROUND(9 * COALESCE(t.total_amount,0))/100
+                when os.rank ='CP-04' THEN ROUND(11 * COALESCE(t.total_amount,0))/100
+                when os.rank ='CP-05' THEN ROUND(13 * COALESCE(t.total_amount,0))/100
+                when os.rank ='CP-06' THEN ROUND(14 * COALESCE(t.total_amount,0))/100
+                when os.rank ='CP-07' THEN ROUND(15 * COALESCE(t.total_amount,0))/100
+                when os.rank ='CP-08' THEN ROUND(16 * COALESCE(t.total_amount,0))/100
+                when os.rank ='CP-09' THEN ROUND(17 * COALESCE(t.total_amount,0))/100
+                when os.rank ='CP-10' THEN ROUND(18 * COALESCE(t.total_amount,0))/100 
+                ELSE 0
+            END
+        ),2) AS total_commission
+        FROM os
+        LEFT JOIN tbl_plot_sell_details t ON os.id = t.member_id
+        GROUP BY os.rank
+        ORDER BY os.rank;
+

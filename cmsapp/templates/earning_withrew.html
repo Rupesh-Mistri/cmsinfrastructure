@@ -1,0 +1,58 @@
+{% extends "admin_base_layout.html" %}
+{% block body %}
+<div class="container  sm:pt-0">
+    <div class="mt-2 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+        <h3 class="text-center mt-2">Withdrawal </h3>
+        
+        <form class="p-4" method="post" action="" enctype= "multipart/form-data">
+            {% csrf_token %}
+            <div class="card">
+        
+                {% comment %} <div class="card-header px-2 py-1 bg-success text-white">Details</div>
+                <div class="card-body"> {% endcomment %}
+                    <div class="row">
+                        <div class="col-md-3 form-group mb-3">
+                            {{ form.withdraw_amount.label_tag }} <span class="text-danger">*</span>
+                            {{ form.withdraw_amount }}
+                            {% if form.withdraw_amount.errors %}
+                                <span class="text-danger">{{ form.withdraw_amount.errors.0 }}</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="col-md-3 form-group mb-3">
+                            {{ form.bank_account_no.label_tag }} <span class="text-danger">*</span>
+                            {{ form.bank_account_no }}
+                            {% if form.bank_account_no.errors %}
+                                <span class="text-danger">{{ form.bank_account_no.errors.0 }}</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="col-md-3 form-group mb-3">
+                            {{ form.ifsc_code.label_tag }} <span class="text-danger">*</span>
+                            {{ form.ifsc_code }}
+                            {% if form.ifsc_code.errors %}
+                                <span class="text-danger">{{ form.ifsc_code.errors.0 }}</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="col-md-3 form-group mb-3">
+                            {{ form.bank_name.label_tag }} <span class="text-danger">*</span>
+                            {{ form.bank_name }}
+                            {% if form.bank_name.errors %}
+                                <span class="text-danger">{{ form.bank_name.errors.0 }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+               
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-sm custom-pay-button mt-3">
+                            Submit   {% comment %} Pay Rs.1080 bonanza + Rs. 2100 {% endcomment %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock body %}

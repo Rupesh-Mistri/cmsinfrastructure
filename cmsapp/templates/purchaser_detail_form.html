@@ -1,0 +1,254 @@
+{% extends "admin_base_layout.html" %}
+{% block body %}
+<div class="container  sm:pt-0">
+    <div class="mt-2 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+        <h3 class="text-center mt-2">Plot Booking Form</h3>
+        
+        <form class="p-4" method="post" action="" enctype= "multipart/form-data">
+            {% csrf_token %}
+            <div class="card">
+                {% comment %} <div class="card-header px-2 py-1 bg-success text-white">Member Details</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <strong>Name:</strong> {{ user_details.member.name }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <strong>Mobile No:</strong> {{ user_details.member.mobile_no }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <strong>Email:</strong> {{ user_details.member.emailaddress }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <strong>Aadhar No:</strong> {{ user_details.member.adhar_no }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <strong>PAN No:</strong> {{ user_details.member.pan_no }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <strong>Address:</strong> {{ user_details.member.address }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <strong>State:</strong> {{ user_details.member.state }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <strong>City:</strong> {{ user_details.member.city }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <strong>Pincode:</strong> {{ user_details.member.pincode }}
+                        </div>
+                    </div>
+                </div>   
+
+                <div class="card-header px-2 py-1 bg-success text-white">Seller Details</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <strong>COMPANY NAME:</strong> {{ COMPANY_NAME}}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <strong>CIN:</strong> {{ CIN }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <strong>PAN:</strong> {{ PAN}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <strong>TAN:</strong> {{ TAN }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <strong>MOBILE NO </strong> {{ MOBILE_NO1 }} , {{MOBILE_NO2}}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <strong>WEBSITE :</strong> {{ WEBSITE_URL }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <strong>COMPANY ADDRESS:</strong> {{ COMPANY_ADDRESS }}
+                        </div>
+                       
+                    </div>
+                </div>    {% endcomment %}
+                <div class="card-header px-2 py-1 bg-success text-white">Purchaser Details</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 form-group mb-3">
+                            {{ form.purchaser_name.label_tag }} <span class="text-danger">*</span>
+                            {{ form.purchaser_name }}
+                            {% if form.purchaser_name.errors %}
+                                <span class="text-danger">{{ form.purchaser_name.errors.0 }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-3 form-group mb-3">
+                            {{ form.phone_no.label_tag }} <span class="text-danger">*</span>
+                            {{ form.phone_no }}
+                            {% if form.phone_no.errors %}
+                                <span class="text-danger">{{ form.phone_no.errors.0 }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-3 form-group mb-3">
+                            {{ form.address.label_tag }} <span class="text-danger">*</span>
+                            {{ form.address }}
+                            {% if form.address.errors %}
+                                <span class="text-danger">{{ form.address.errors.0 }}</span>
+                            {% endif %}
+                        </div>
+                        {% comment %} <div class="col-md-3 form-group mb-3">
+                            {{ form.address_document.label_tag }} <span class="text-danger">*</span>
+                            {{ form.address_document }}
+                            {% if form.address_document.errors %}
+                                <span class="text-danger">{{ form.address_document.errors.0 }}</span>
+                            {% endif %}
+                        </div> {% endcomment %}
+                    {% comment %} </div>
+                    <div class="row"> {% endcomment %}
+                        <div class="col-md-3 form-group mb-3">
+                            {{ form.purchaser_photo.label_tag }} <span class="text-danger">*</span>
+                            {{ form.purchaser_photo }}
+                            {% if form.purchaser_photo.errors %}
+                                <span class="text-danger">{{ form.purchaser_photo.errors.0 }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-3 form-group mb-3">
+                            {{ form.aadhar_card_no.label_tag }} <span class="text-danger">*</span>
+                            {{ form.aadhar_card_no }}
+                            {% if form.aadhar_card_no.errors %}
+                                <span class="text-danger">{{ form.aadhar_card_no.errors.0 }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-3 form-group mb-3">
+                            {{ form.pan_no.label_tag }} <span class="text-danger">*</span>
+                            {{ form.pan_no }}
+                            {% if form.pan_no.errors %}
+                                <span class="text-danger">{{ form.pan_no.errors.0 }}</span>
+                            {% endif %}
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="card-header px-2 py-1 bg-success text-white">Plot Details</div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3 form-group mb-3">
+                                    {{ lform.side.label_tag }} <span class="text-danger">*</span> <br>
+                                    {{ lform.side }}
+                                    {% if lform.side.errors %}
+                                        <span class="text-danger">{{ form.lform.errors.0 }}</span>
+                                    {% endif %}
+                                </div>
+
+                                <div class="col-md-3 form-group mb-3">
+                                    {{ form.plot_dtl.label_tag }} <span class="text-danger">*</span> <br>
+                                    {{ form.plot_dtl }}
+                                    {% if form.plot_dtl.errors %}
+                                        <span class="text-danger">{{ form.plot_dtl.errors.0 }}</span>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-3 form-group mb-3">
+                                    {{ lform.no_of_decimil.label_tag }} <span class="text-danger">*</span> <br>
+                                    {{ lform.no_of_decimil }}
+                                    {% if lform.no_of_decimil.errors %}
+                                        <span class="text-danger">{{ lform.no_of_decimil.errors.0 }}</span>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-3 form-group mb-3">
+                                    {{ lform.price.label_tag }} <span class="text-danger">*</span> <br>
+                                    {{ lform.price }}
+                                    {% if lform.price.errors %}
+                                        <span class="text-danger">{{ lform.price.errors.0 }}</span>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-3 form-group mb-3">
+                                    {{ lform.total_amount.label_tag }} <span class="text-danger">*</span> <br>
+                                    {{ lform.total_amount }}
+                                    {% if lform.total_amount.errors %}
+                                        <span class="text-danger">{{ lform.total_amount.errors.0 }}</span>
+                                    {% endif %}
+                                </div>
+
+                                <div class="col-md-3 form-group mb-3">
+                                    {{ lform.booking_amount.label_tag }} <span class="text-danger">*</span> <br>
+                                    {{ lform.booking_amount }}
+                                    {% if lform.booking_amount.errors %}
+                                        <span class="text-danger">{{ lform.booking_amount.errors.0 }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        let no_of_decimil = document.getElementById('id_no_of_decimil');
+                        let price = document.getElementById('id_price');
+                        let total_amount = document.getElementById('id_total_amount');
+                        let booking_amount = document.getElementById('id_booking_amount');
+                        function calculateTotal() {
+                            let decimalCount = parseFloat(no_of_decimil.value) || 0;
+                            let priceValue = parseFloat(price.value) || 0;
+                            total_amt=total_amount.value = (decimalCount * priceValue).toFixed(2); // Keeps 2 decimal places
+                            booking_amount.value= (20*total_amt)/100;
+                        }
+                    
+                        no_of_decimil.addEventListener('input', calculateTotal);
+                        price.addEventListener('input', calculateTotal);
+                    </script>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-sm custom-pay-button mt-3">
+                            Submit   {% comment %} Pay Rs.1080 bonanza + Rs. 2100 {% endcomment %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById('id_plot_dtl').innerHTML = "<option value=''>Select</option>";
+
+    document.addEventListener("DOMContentLoaded", function () {
+        let sideSelect = document.getElementById('id_side');
+
+        sideSelect.addEventListener("change", function () {
+            fetch_plot_details_by_side(this.value);  // Pass selected value
+        });
+    });
+
+    function fetch_plot_details_by_side(side_id) {
+        fetch("/fetch_plot_details_by_side/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": "{{ csrf_token }}"  // Include CSRF token for security
+            },
+            body: JSON.stringify({ "side_id": side_id })
+        })
+        .then(response => response.json())
+        .then(data => {
+            let plotSelect = document.getElementById('id_plot_dtl');
+            plotSelect.innerHTML = "<option value=''>Select</option>"; // Reset dropdown
+
+            if (data.status === 'success') {
+                data.plot_data.forEach(plot => {  // Corrected `forEach`
+                    let option = `<option value='${plot.id}'>${plot.plot_no}</option>`;
+                    plotSelect.innerHTML += option; // Append option
+                });
+            } else {
+                console.error("Error:", data.message);
+                alert(data.message);
+            }
+        })
+        .catch(error => {
+            console.error("Fetch Error:", error);
+            alert("Error fetching plot details.");
+        });
+    }
+</script>
+
+{% endblock body %}
